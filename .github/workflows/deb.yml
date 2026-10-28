@@ -57,6 +57,16 @@ jobs:
         with: { name: debs, path: dist }
       - name: Verify checksum
         run: cd dist && sha256sum -c ./*_${{ matrix.arch }}.deb.sha256
+      # The package runs ghcr.io/<owner>/cosmic-pos-{backend,web}:<version>. Outside a release run, build those images
+      # from this commit so the test checks this code and does not depend on images already being published. Compose
+      # only pulls images that are missing, so these local builds are used. Release runs still test the published ones.
+      - name: Build the app images from this commit
+        if: github.event.inputs.version == ''
+        run: |
+          VERSION="1.9.0"
+          OWNER="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          docker build -t "ghcr.io/$OWNER/cosmic-pos-backend:$VERSION" --build-arg APP_VERSION="$VERSION" -f apps/backend/Dockerfile .
+          docker build -t "ghcr.io/$OWNER/cosmic-pos-web:$VERSION" --build-arg BACKEND_URL=http://backend:4000 -f apps/web/Dockerfile .
       - name: Install, answer, reinstall, remove, purge
         run: sudo DEB="$PWD/$(ls dist/*_${{ matrix.arch }}.deb)" packaging/deb/test.sh
 

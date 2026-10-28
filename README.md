@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="apps/web/public/brand-lockup.png" alt="Nodedr OrderRestro" width="520">
+<img src="apps/web/public/brand-lockup.png" alt="Cosmic POS" width="520">
 
-<img src="docs/orderrestro-cover.jpg" alt="Illustrative evening scene in an independent restaurant" width="100%">
+<img src="docs/cosmic-pos-cover.jpg" alt="Illustrative evening scene in an independent restaurant" width="100%">
 
 **Open-source, self-hosted restaurant POS & management system** — billing
 with **UPI QR payments**, tables, kitchen display (KDS), reservations,
@@ -21,17 +21,17 @@ dine-in, takeaway, delivery and kitchen operations.
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Status](https://img.shields.io/badge/status-active%20development-orange.svg)](./ROADMAP.md)
 
-Developed by [NodeDR Infotech Private Limited](https://www.nodedr.com/)
+Crafted by **SyncAi Technologies** · Based on [Nodedr OrderRestro](https://github.com/Raktim94/nodedr-restaurant-pos) (AGPL-3.0)
 
-**[Try OrderRestro](https://orderrestro.nodedr.com/)** · **[Case study](https://www.raktimranjit.com/projects/orderrestro)** · **[Maintainer: Raktim Ranjit](https://www.raktimranjit.com/)**
+**[Get Cosmic POS](https://github.com/AnilBotta/Cosmic-POS)** · **[Credits](./NOTICE.md)**
 
 <p align="center">
-  <img src="docs/assets/hero-animated.svg" alt="Nodedr OrderRestro: animated overview with an illustrative sample screen" width="100%">
+  <img src="docs/assets/hero-animated.svg" alt="Cosmic POS: animated overview with an illustrative sample screen" width="100%">
 </p>
 
 
 [Quick Start](#quick-start) ·
-[How to use](#how-to-use-orderrestro) ·
+[How to use](#how-to-use-cosmic-pos) ·
 [Full tutorial](./TUTORIAL.md) ·
 [Features](#features) ·
 [Screenshots](#screenshots) ·
@@ -45,7 +45,7 @@ Developed by [NodeDR Infotech Private Limited](https://www.nodedr.com/)
 
 ## What this is
 
-**Nodedr OrderRestro** is a purpose-built, offline-first Restaurant
+**Cosmic POS** is a purpose-built, offline-first Restaurant
 Management System for restaurants, cafés, coffee shops, bakeries, fast
 food, fine dining, bars, food courts, cloud kitchens, and multi-branch
 chains. The whole stack — Postgres, API, and web app — runs on one local
@@ -179,7 +179,7 @@ roles) under **Settings** in the sidebar, photo upload on menu items, and
 an English/Spanish/French language switcher on the guest-facing QR
 ordering page and staff sidebar.
 
-## Why OrderRestro
+## Why Cosmic POS
 
 - **UPI-first checkout (India)** — pick UPI and a QR for the exact bill
   amount appears at the till *and* on the customer-facing screen; a
@@ -194,7 +194,7 @@ ordering page and staff sidebar.
 - **India-ready** — GST (inclusive or exclusive), UPI, ₹ formatting, plus
   US sales tax, EU VAT and Spanish IVA for other markets.
 
-## How to use OrderRestro
+## How to use Cosmic POS
 
 Start with the [screenshot-guided tutorial](./TUTORIAL.md) for the full
 first-run walkthrough. It covers sign-up, setup, daily service, and the
@@ -219,7 +219,7 @@ management tools with **56 screenshots of the app**.
 <p align="center">
   <a href="./TUTORIAL.md"><strong>Open the complete tutorial →</strong></a>
   &nbsp; · &nbsp;
-  <a href="./docs/orderrestro-user-manual.pdf">Download the user manual</a>
+  <a href="./docs/cosmic-pos-user-manual.pdf">Download the user manual</a>
 </p>
 
 ## Screenshots
@@ -247,7 +247,7 @@ management tools with **56 screenshots of the app**.
 ## FAQ
 
 **Is there a free, open-source restaurant POS I can self-host?**
-Yes — OrderRestro is AGPL-3.0 and installs with `docker compose up`, or as
+Yes — Cosmic POS is AGPL-3.0 and installs with `docker compose up`, or as
 a one-click app on CasaOS / ZimaOS.
 
 **Does it support UPI payments and GST billing?**
@@ -344,7 +344,7 @@ already bundled, which is all this project requires.
 ### One-click install
 
 ```bash
-git clone https://github.com/Raktim94/nodedr-restaurant-pos.git && cd nodedr-restaurant-pos && ./install.sh
+git clone https://github.com/AnilBotta/Cosmic-POS.git && cd Cosmic-POS && ./install.sh
 ```
 
 [`install.sh`](install.sh) generates a `.env` with random secrets (only if
@@ -365,11 +365,11 @@ If you'd rather run each step yourself (e.g. to set your own secrets instead
 of generated ones):
 
 ```bash
-git clone https://github.com/Raktim94/nodedr-restaurant-pos.git
-cd nodedr-restaurant-pos
+git clone https://github.com/AnilBotta/Cosmic-POS.git
+cd Cosmic-POS
 cp .env.example .env        # edit JWT_SECRET / POSTGRES_PASSWORD for anything beyond local dev
 docker compose up -d --build
-docker exec nodedr-restaurant-backend npx ts-node prisma/seed.ts   # optional: demo data + login; upsert-based, safe to re-run
+docker exec cosmic-pos-backend npx ts-node prisma/seed.ts   # optional: demo data + login; upsert-based, safe to re-run
 ```
 
 ### Local dev (no Docker for the apps)
@@ -381,7 +381,7 @@ service from Docker Compose).
 pnpm install
 docker compose up -d postgres
 cp apps/backend/.env.example apps/backend/.env   # point DATABASE_URL at your Postgres
-pnpm --filter @nodedr-restaurant/types build
+pnpm --filter @cosmic-pos/types build
 cd apps/backend && npx prisma migrate dev && npx ts-node prisma/seed.ts && cd ../..
 pnpm dev   # runs backend (:4001) and web (:1995) together via Turborepo
 ```
@@ -415,7 +415,7 @@ docker compose up -d --build
 ```bash
 git pull
 pnpm install
-pnpm --filter @nodedr-restaurant/types build
+pnpm --filter @cosmic-pos/types build
 cd apps/backend && npx prisma migrate dev && cd ../..
 pnpm dev
 ```
@@ -493,8 +493,10 @@ This project follows the [Contributor Covenant](./CODE_OF_CONDUCT.md).
 
 ## License
 
-Copyright © 2026 [Nodedr Infotech Private Limited](https://www.nodedr.com/)
-and Raktim Ranjit. Licensed under the
+Cosmic POS modifications copyright © 2026 SyncAi Technologies. Based on
+[Nodedr OrderRestro](https://github.com/Raktim94/nodedr-restaurant-pos), copyright © 2026
+Nodedr Infotech Private Limited and Raktim Ranjit (see [`NOTICE.md`](./NOTICE.md)).
+Licensed under the
 [GNU Affero General Public License v3.0](./LICENSE) (AGPL-3.0). In short:
 you're free to self-host, use, and modify this software for your
 restaurant or business. If you modify it and run that modified version
@@ -508,15 +510,15 @@ See [`MAINTAINERS.md`](./MAINTAINERS.md) for project maintainers.
 ---
 
 <div align="center">
-<img src="apps/web/public/logo.png" alt="Nodedr OrderRestro" width="72">
+<img src="apps/web/public/logo.png" alt="Cosmic POS" width="72">
 </div>
 
 
-## Case study
+## Credits
 
-Read the [OrderRestro case study](https://www.raktimranjit.com/projects/orderrestro) for the product background and design decisions.
-
-Maintainer: [Raktim Ranjit](https://www.raktimranjit.com/)
+Cosmic POS is crafted by SyncAi Technologies on top of
+[Nodedr OrderRestro](https://github.com/Raktim94/nodedr-restaurant-pos) by Nodedr Infotech Private Limited
+and Raktim Ranjit. See [`NOTICE.md`](./NOTICE.md).
 
 ---
 

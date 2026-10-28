@@ -1,12 +1,14 @@
 cff-version: 1.2.0
-message: "If you use Nodedr OrderRestro in research, teaching, or a public project, please cite it."
+message: "If you use Cosmic POS in research, teaching, or a public project, please cite it."
 type: software
-title: "Nodedr OrderRestro"
+title: "Cosmic POS"
 authors:
+  - name: SyncAi Technologies
   - family-names: Ranjit
     given-names: Raktim
     website: https://www.raktimranjit.com/
-repository-code: https://github.com/Raktim94/nodedr-restaurant-pos
-url: https://orderrestro.nodedr.com/
+    affiliation: "Original author of Nodedr OrderRestro"
+repository-code: https://github.com/AnilBotta/Cosmic-POS
+url: https://github.com/AnilBotta/Cosmic-POS
 license: AGPL-3.0-only
 abstract: "Offline-first, self-hosted restaurant management software with point of sale, tables, kitchen display, reservations, and inventory."

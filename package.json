@@ -1,18 +1,18 @@
 {
-  "name": "nodedr-orderrestro",
+  "name": "cosmic-pos",
   "private": true,
   "version": "0.1.0",
-  "description": "Nodedr OrderRestro — offline-first Restaurant Management System",
-  "author": "Raktim Ranjit <mail@raktimranjit.com> (https://github.com/Raktim94)",
+  "description": "Cosmic POS — offline-first Restaurant Management System",
+  "author": "SyncAi Technologies",
   "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Raktim94/nodedr-restaurant-pos.git"
+    "url": "https://github.com/AnilBotta/Cosmic-POS.git"
   },
   "bugs": {
-    "url": "https://github.com/Raktim94/nodedr-restaurant-pos/issues"
+    "url": "https://github.com/AnilBotta/Cosmic-POS/issues"
   },
-  "homepage": "https://orderrestro.nodedr.com/",
+  "homepage": "https://github.com/AnilBotta/Cosmic-POS",
   "keywords": [
     "restaurant-management",
     "restaurant-pos",

@@ -1,12 +1,12 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: nodedr-restaurant-postgres
+    container_name: cosmic-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: nodedr
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nodedr_dev_pw}
-      POSTGRES_DB: nodedr_restaurant
+      POSTGRES_USER: cosmic
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cosmic_dev_pw}
+      POSTGRES_DB: cosmic_pos
     # Not published to the host — only the backend needs it, over the
     # internal Docker network. Uncomment `ports` below for local psql access.
     expose:
@@ -16,7 +16,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U nodedr"]
+      test: ["CMD-SHELL", "pg_isready -U cosmic"]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -30,11 +30,11 @@ services:
     # Same name CI publishes. `up --build` tags the local build with it, and
     # the in-app "Update now" button (see the `updater` service below) pulls
     # the published image of a newer version under it.
-    image: ghcr.io/raktim94/nodedr-restaurant-pos-backend:${APP_VERSION:-dev}
-    container_name: nodedr-restaurant-backend
+    image: ghcr.io/anilbotta/cosmic-pos-backend:${APP_VERSION:-dev}
+    container_name: cosmic-pos-backend
     restart: unless-stopped
     environment:
-      DATABASE_URL: "postgresql://nodedr:${POSTGRES_PASSWORD:-nodedr_dev_pw}@postgres:5432/nodedr_restaurant"
+      DATABASE_URL: "postgresql://cosmic:${POSTGRES_PASSWORD:-cosmic_dev_pw}@postgres:5432/cosmic_pos"
       JWT_SECRET: ${JWT_SECRET:?set a real JWT_SECRET in .env for anything beyond local dev}
       JWT_EXPIRES_IN: "12h"
       PORT: "4000"
@@ -52,13 +52,13 @@ services:
       # container below to pull the latest published images. Unset these two
       # and the Update button simply says this install can't update itself.
       UPDATER_URL: "http://updater:8080"
-      UPDATER_TOKEN: "${UPDATER_TOKEN:-nodedr-restaurant-updater}"
+      UPDATER_TOKEN: "${UPDATER_TOKEN:-cosmic-pos-updater}"
       # Optional: S3 backup config can also be set from Settings > Backup
       # (persisted to the `backup_config` DB row, which takes priority over
       # these). Uncomment for a headless/CasaOS-style deployment that
       # configures backups purely from env vars instead.
       # S3_BACKUP_ENDPOINT: "https://s3.example.com"
-      # S3_BACKUP_BUCKET: "orderrestro-backups"
+      # S3_BACKUP_BUCKET: "cosmic-pos-backups"
       # S3_BACKUP_ACCESS_KEY_ID: ""
       # S3_BACKUP_SECRET_ACCESS_KEY: ""
       # S3_BACKUP_REGION: "auto"
@@ -107,8 +107,8 @@ services:
         # Next bakes rewrite destinations at BUILD time — this must be a
         # build ARG, not a runtime env (see apps/web/Dockerfile comment).
         BACKEND_URL: "http://backend:4000"
-    image: ghcr.io/raktim94/nodedr-restaurant-pos-web:${APP_VERSION:-dev}
-    container_name: nodedr-restaurant-web
+    image: ghcr.io/anilbotta/cosmic-pos-web:${APP_VERSION:-dev}
+    container_name: cosmic-pos-web
     restart: unless-stopped
     ports:
       - "${HOST_PORT:-1995}:3000"
@@ -126,12 +126,12 @@ services:
   updater:
     build:
       context: ./updater
-    image: ghcr.io/raktim94/nodedr-restaurant-pos-updater:latest
-    container_name: nodedr-restaurant-updater
+    image: ghcr.io/anilbotta/cosmic-pos-updater:latest
+    container_name: cosmic-pos-updater
     restart: unless-stopped
     environment:
-      UPDATER_TOKEN: "${UPDATER_TOKEN:-nodedr-restaurant-updater}"
-      TARGET_CONTAINERS: "nodedr-restaurant-backend,nodedr-restaurant-web"
+      UPDATER_TOKEN: "${UPDATER_TOKEN:-cosmic-pos-updater}"
+      TARGET_CONTAINERS: "cosmic-pos-backend,cosmic-pos-web"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 

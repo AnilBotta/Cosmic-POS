@@ -1,4 +1,4 @@
-# Contributing to Nodedr OrderRestro
+# Contributing to Cosmic POS
 
 First off — thank you for considering a contribution. This is a young,
 fast-moving project (Phases 0-3 of a 20-module scope are done; see
@@ -30,15 +30,15 @@ anything here is out of date, trust [`PROJECT.md`](./PROJECT.md) and
 ## Code of Conduct
 
 This project follows the [Contributor Covenant](./CODE_OF_CONDUCT.md). By
-participating, you agree to uphold it. Report unacceptable behavior to
-**mail@raktimranjit.com**.
+participating, you agree to uphold it. Report unacceptable behavior by
+[opening an issue](https://github.com/AnilBotta/Cosmic-POS/issues).
 
 ## Maintainers & copyright
 
-See [`MAINTAINERS.md`](./MAINTAINERS.md) — Raktim Ranjit is the lead
-maintainer; project copyright is held jointly by
-[Nodedr Infotech Private Limited](https://www.nodedr.com/) and Raktim
-Ranjit. By submitting a PR, you agree your contribution is licensed under
+See [`MAINTAINERS.md`](./MAINTAINERS.md) — SyncAi Technologies maintains
+Cosmic POS. The original OrderRestro code is copyright
+Nodedr Infotech Private Limited and Raktim Ranjit; Cosmic POS changes are
+copyright SyncAi Technologies. By submitting a PR, you agree your contribution is licensed under
 the same [AGPL-3.0](./LICENSE) as the rest of the project; you retain
 copyright on your own contribution.
 
@@ -71,11 +71,11 @@ Docker for it.
 ### Option A — full stack via Docker
 
 ```bash
-git clone https://github.com/Raktim94/nodedr-restaurant-pos.git
-cd nodedr-restaurant-pos
+git clone https://github.com/AnilBotta/Cosmic-POS.git
+cd Cosmic-POS
 cp .env.example .env                 # edit JWT_SECRET / POSTGRES_PASSWORD for anything beyond local dev
 docker compose up -d --build
-docker exec nodedr-restaurant-backend npx ts-node prisma/seed.ts   # first run only — demo data + login
+docker exec cosmic-pos-backend npx ts-node prisma/seed.ts   # first run only — demo data + login
 ```
 
 Open <http://localhost:1995> and sign in with `owner@demo.local` /
@@ -90,7 +90,7 @@ they are not published directly to the host.
 pnpm install
 docker compose up -d postgres                               # just the DB
 cp apps/backend/.env.example apps/backend/.env               # point DATABASE_URL at your Postgres
-pnpm --filter @nodedr-restaurant/types build
+pnpm --filter @cosmic-pos/types build
 cd apps/backend && npx prisma migrate dev && npx ts-node prisma/seed.ts && cd ../..
 pnpm dev   # runs backend (:4001) and web (:1995) together via Turborepo
 ```
@@ -170,7 +170,7 @@ on POS/KDS screens used under time pressure.
 
 ## Making a change
 
-1. Fork the repo and create a branch off `master`:
+1. Fork the repo and create a branch off `main`:
    `git checkout -b feat/short-description` (or `fix/`, `docs/`, `chore/`
    as appropriate).
 2. Keep the change scoped. A bug fix doesn't need a drive-by refactor; a
@@ -202,7 +202,7 @@ is more important than format. Keep the subject line under ~70 characters.
 
 ## Opening a pull request
 
-- Target the `master` branch.
+- Target the `main` branch.
 - Fill in the PR template (what changed, why, how you tested it).
 - Make sure `pnpm lint && pnpm typecheck && pnpm build` pass locally —
   see [Development setup](#development-setup).
@@ -246,7 +246,7 @@ PR.
 
 ## Questions & discussion
 
-Use [GitHub Discussions](https://github.com/Raktim94/nodedr-restaurant-pos/discussions)
+Use [GitHub Discussions](https://github.com/AnilBotta/Cosmic-POS/discussions)
 for "how do I…" / "why does X work this way" / general chat. Use Issues
 for concrete bugs and feature requests. Keep architecture debates in
 Discussions or a tagged issue rather than scattered across PR comments,

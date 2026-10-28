@@ -1,0 +1,16 @@
+[Unit]
+Description=Cosmic POS (Docker Compose)
+Documentation=https://github.com/AnilBotta/Cosmic-POS#readme
+Requires=docker.service
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+TimeoutStartSec=900
+ExecStart=/usr/bin/docker compose --project-name cosmic-pos --env-file /etc/cosmic-pos/cosmic-pos.env -f /usr/lib/cosmic-pos/docker-compose.yml up -d --remove-orphans
+ExecStop=/usr/bin/docker compose --project-name cosmic-pos --env-file /etc/cosmic-pos/cosmic-pos.env -f /usr/lib/cosmic-pos/docker-compose.yml down
+
+[Install]
+WantedBy=multi-user.target

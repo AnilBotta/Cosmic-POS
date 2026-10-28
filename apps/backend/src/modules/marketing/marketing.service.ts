@@ -5,11 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import type {
-  CampaignDto,
-  CouponDto,
-  PromotionDto,
-} from '@cosmic-pos/types';
+import type { CampaignDto, CouponDto, PromotionDto } from '@cosmic-pos/types';
 import { BranchTimeService } from '../../common/services/branch-time.service';
 import { localMinuteAndDay } from '../../common/time';
 import { PrismaService } from '../../prisma/prisma.service';

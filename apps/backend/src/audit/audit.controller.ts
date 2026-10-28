@@ -1,9 +1,6 @@
 import { BadRequestException, Controller, Get, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import {
-  auditLogListQuerySchema,
-  type SessionUser,
-} from '@cosmic-pos/types';
+import { auditLogListQuerySchema, type SessionUser } from '@cosmic-pos/types';
 import { Auth } from '../common/decorators/auth.decorator';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { AuditService } from './audit.service';

@@ -8,10 +8,7 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import {
-  issueGiftCardSchema,
-  type SessionUser,
-} from '@cosmic-pos/types';
+import { issueGiftCardSchema, type SessionUser } from '@cosmic-pos/types';
 import { Auth } from '../../common/decorators/auth.decorator';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';

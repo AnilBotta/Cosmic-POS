@@ -1,6 +1,6 @@
 name: Debian package
 
-# Builds nodedr-orderrestro for amd64 and arm64 and proves it works: installs it on a native runner of each architecture,
+# Builds cosmic-pos for amd64 and arm64 and proves it works: installs it on a native runner of each architecture,
 # waits for the app to answer, reinstalls, removes and purges it (packaging/deb/test.sh). A release is published
 # only by running this workflow by hand with a version: it attaches the .deb files and SHA-256 checksums to the
 # GitHub release v<version>.
@@ -9,7 +9,7 @@ on:
   pull_request:
     paths: ["packaging/deb/**", ".github/workflows/deb.yml"]
   push:
-    branches: [master]
+    branches: [main]
     paths: ["packaging/deb/**", ".github/workflows/deb.yml"]
   workflow_dispatch:
     inputs:
@@ -57,6 +57,16 @@ jobs:
         with: { name: debs, path: dist }
       - name: Verify checksum
         run: cd dist && sha256sum -c ./*_${{ matrix.arch }}.deb.sha256
+      # The package runs ghcr.io/<owner>/cosmic-pos-{backend,web}:<version>. Outside a release run, build those images
+      # from this commit so the test checks this code and does not depend on images already being published. Compose
+      # only pulls images that are missing, so these local builds are used. Release runs still test the published ones.
+      - name: Build the app images from this commit
+        if: github.event.inputs.version == ''
+        run: |
+          VERSION="1.9.0"
+          OWNER="$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')"
+          docker build -t "ghcr.io/$OWNER/cosmic-pos-backend:$VERSION" --build-arg APP_VERSION="$VERSION" -f apps/backend/Dockerfile .
+          docker build -t "ghcr.io/$OWNER/cosmic-pos-web:$VERSION" --build-arg BACKEND_URL=http://backend:4000 -f apps/web/Dockerfile .
       - name: Install, answer, reinstall, remove, purge
         run: sudo DEB="$PWD/$(ls dist/*_${{ matrix.arch }}.deb)" packaging/deb/test.sh
 
@@ -79,7 +89,7 @@ jobs:
           curl -fsSL "https://download.docker.com/linux/${ID}/gpg" -o /etc/apt/keyrings/docker.asc
           echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/${ID} ${VERSION_CODENAME} stable" > /etc/apt/sources.list.d/docker.list
           apt-get update -qq
-          apt-get install -s -y ./dist/*_amd64.deb | grep -E "^Inst (docker-ce|docker-compose-plugin|nodedr-orderrestro) "
+          apt-get install -s -y ./dist/*_amd64.deb | grep -E "^Inst (docker-ce|docker-compose-plugin|cosmic-pos) "
           # And without Docker's repository the same simulation must fail clearly, which is why the one-command installer exists.
           rm /etc/apt/sources.list.d/docker.list && apt-get update -qq
           if apt-get install -s -y ./dist/*_amd64.deb >/dev/null 2>&1; then echo "note: resolves on stock Debian 12 without Docker's repository"; else echo "as expected: stock Debian 12 needs Docker's repository (the installer adds it)"; fi
@@ -103,5 +113,5 @@ jobs:
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" dist/* packaging/deb/install-linux.sh --clobber
           else
-            gh release create "$TAG" dist/* packaging/deb/install-linux.sh --target "${{ github.sha }}" --title "OrderRestro $VERSION" --notes "Packages for Ubuntu and Debian (amd64 and arm64). They install a systemd service that runs the version-pinned Docker images. One command: curl -fsSL https://orderrestro.nodedr.com/install-linux.sh | sudo bash   Or: sudo apt install ./nodedr-orderrestro_${VERSION}_<arch>.deb  Guide: https://orderrestro.nodedr.com/docs"
+            gh release create "$TAG" dist/* packaging/deb/install-linux.sh --target "${{ github.sha }}" --title "Cosmic POS $VERSION" --notes "Packages for Ubuntu and Debian (amd64 and arm64). They install a systemd service that runs the version-pinned Docker images. One command: curl -fsSL https://github.com/AnilBotta/Cosmic-POS/releases/latest/download/install-linux.sh | sudo bash   Or: sudo apt install ./cosmic-pos_${VERSION}_<arch>.deb  Guide: https://github.com/AnilBotta/Cosmic-POS#readme"
           fi

@@ -5,10 +5,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import type {
-  CreateStaffApiKeyDto,
-  SessionUser,
-} from '@nodedr-restaurant/types';
+import type { CreateStaffApiKeyDto, SessionUser } from '@cosmic-pos/types';
 import { PrismaService } from '../prisma/prisma.service';
 
 const TOKEN_PREFIX = 'ordr_staff_';

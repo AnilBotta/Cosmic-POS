@@ -15,7 +15,7 @@ import {
   TAX_REGIME_PRESETS,
   type TaxMode,
   type TaxRegime,
-} from '@nodedr-restaurant/types';
+} from '@cosmic-pos/types';
 import {
   CMD,
   EscposWriter,
@@ -371,7 +371,7 @@ export function buildTestSlip(
   profile: PrinterProfile = resolveProfile(),
 ): Buffer {
   const w = new EscposWriter(profile);
-  w.text('Nodedr OrderRestro', { align: 'center', bold: true, size: 'big' });
+  w.text('Cosmic POS', { align: 'center', bold: true, size: 'big' });
   w.text('Printer test OK', { align: 'center' });
   w.rule();
   const ruler = '1234567890'.repeat(7).slice(0, profile.columns);

@@ -2,7 +2,7 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
-  "author": "Raktim Ranjit <mail@raktimranjit.com> (https://github.com/Raktim94)",
+  "author": "SyncAi Technologies",
   "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "next dev",
@@ -15,7 +15,7 @@
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@hookform/resolvers": "^3.10.0",
-    "@nodedr-restaurant/types": "workspace:*",
+    "@cosmic-pos/types": "workspace:*",
     "@tanstack/react-query": "^5.101.4",
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",

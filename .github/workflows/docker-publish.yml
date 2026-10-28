@@ -6,7 +6,7 @@ name: Publish Docker images
 # file with no build step and no access to this repo's source, so `build:`
 # (used in the repo-root docker-compose.yml for a `git clone` + build flow)
 # is not an option there — the CasaOS manifest instead references
-# `ghcr.io/raktim94/nodedr-restaurant-pos-{backend,web}:<version>`, and
+# `ghcr.io/anilbotta/cosmic-pos-{backend,web,updater}:<version>`, and
 # those tags only exist because this workflow pushed them.
 #
 # Each architecture is built on a NATIVE runner (ubuntu-24.04-arm for arm64)
@@ -22,13 +22,13 @@ name: Publish Docker images
 # project nodedr-pos) using the automatic `secrets.GITHUB_TOKEN` — no
 # manually-created registry credential needed.
 
-# A push to master publishes only :edge and :sha-<commit>, so unreleased code can never replace the image a
+# A push to main publishes only :edge and :sha-<commit>, so unreleased code can never replace the image a
 # version tag (and every install pinned to it) points at. A version tag (vX.Y.Z) or a manual run with a
 # version publishes :<version> and :latest.
 on:
   push:
     tags: ["v*"]
-    branches: [master]
+    branches: [main]
     paths:
       - "apps/backend/**"
       - "apps/web/**"
@@ -75,7 +75,7 @@ jobs:
           if [ -z "$VERSION" ] && [ "$GITHUB_REF_TYPE" = "tag" ]; then
             VERSION="${GITHUB_REF_NAME#v}"
           fi
-          # No version: a plain push to master. Build and publish :edge only.
+          # No version: a plain push to main. Build and publish :edge only.
           if [ -z "$VERSION" ]; then
             VERSION="edge"
           fi
@@ -90,13 +90,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: [nodedr-restaurant-pos-backend, nodedr-restaurant-pos-web]
+        image: [cosmic-pos-backend, cosmic-pos-web, cosmic-pos-updater]
         platform: [linux/amd64, linux/arm64]
         include:
-          - image: nodedr-restaurant-pos-backend
+          - image: cosmic-pos-backend
             dockerfile: apps/backend/Dockerfile
-          - image: nodedr-restaurant-pos-web
+            context: .
+          - image: cosmic-pos-web
             dockerfile: apps/web/Dockerfile
+            context: .
+          # The in-app updater sidecar CasaOS pulls; its Dockerfile copies
+          # server.js from its own folder, so it builds with that folder as context.
+          - image: cosmic-pos-updater
+            dockerfile: updater/Dockerfile
+            context: updater
           - platform: linux/amd64
             runner: ubuntu-latest
             slug: amd64
@@ -116,7 +123,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ${{ matrix.context }}
           file: ${{ matrix.dockerfile }}
           # web needs the backend URL baked in at build time (Next.js rewrites
           # resolve at build). APP_VERSION is only used by the backend image.
@@ -145,7 +152,7 @@ jobs:
     timeout-minutes: 15
     strategy:
       matrix:
-        image: [nodedr-restaurant-pos-backend, nodedr-restaurant-pos-web]
+        image: [cosmic-pos-backend, cosmic-pos-web, cosmic-pos-updater]
     steps:
       - uses: actions/download-artifact@v4
         with:

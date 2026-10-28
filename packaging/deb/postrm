@@ -2,6 +2,6 @@
 set -e
 systemctl daemon-reload >/dev/null 2>&1 || true
 if [ "$1" = purge ]; then
-  echo "nodedr-orderrestro: your data stays in Docker volumes (nodedr-orderrestro_pg_data, nodedr-orderrestro_uploads_data, nodedr-orderrestro_state) and your settings and generated passwords in /etc/nodedr-orderrestro/nodedr-orderrestro.env, so a later reinstall picks up where you left off. To delete everything for good: sudo docker compose --project-name nodedr-orderrestro down -v ; sudo rm -rf /etc/nodedr-orderrestro" >&2
+  echo "cosmic-pos: your data stays in Docker volumes (cosmic-pos_pg_data, cosmic-pos_uploads_data, cosmic-pos_state) and your settings and generated passwords in /etc/cosmic-pos/cosmic-pos.env, so a later reinstall picks up where you left off. To delete everything for good: sudo docker compose --project-name cosmic-pos down -v ; sudo rm -rf /etc/cosmic-pos" >&2
 fi
 exit 0

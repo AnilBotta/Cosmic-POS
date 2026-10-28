@@ -1,8 +1,8 @@
 {
-  "name": "@nodedr-restaurant/types",
+  "name": "@cosmic-pos/types",
   "version": "0.1.0",
   "private": true,
-  "author": "Raktim Ranjit <mail@raktimranjit.com> (https://github.com/Raktim94)",
+  "author": "SyncAi Technologies",
   "license": "AGPL-3.0-only",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -1,6 +1,6 @@
 "use client";
 
-import type { KotStatusDto } from "@nodedr-restaurant/types";
+import type { KotStatusDto } from "@cosmic-pos/types";
 import { ChefHat, RefreshCw } from "lucide-react";
 import { useKdsProgress } from "@/hooks/use-kds";
 import { cn } from "@/lib/utils";

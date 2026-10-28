@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/layout/logo";
+import { SyncAiCredit } from "@/components/layout/syncai-credit";
 import { downloadHref } from "@/lib/downloads";
 
 const columns = [
@@ -37,12 +38,13 @@ export function MarketingFooter() {
           <div>
             <Link href="/" className="flex items-center gap-2.5">
               <Logo size={28} />
-              <span className="text-sm font-semibold text-foreground">OrderRestro</span>
+              <span className="text-sm font-semibold text-foreground">Cosmic POS</span>
             </Link>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               Offline-first restaurant management, self-hosted on your own
-              server. Built by Nodedr Infotech Private Limited.
+              server.
             </p>
+            <SyncAiCredit className="mt-3 text-sm text-muted-foreground" height={22} />
           </div>
 
           {columns.map((col) => (
@@ -68,7 +70,10 @@ export function MarketingFooter() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Nodedr Infotech Private Limited. Licensed AGPL-3.0.
+            &copy; {new Date().getFullYear()} SyncAi Technologies. Based on{" "}
+            <a href="https://github.com/Raktim94/nodedr-restaurant-pos" className="underline hover:text-foreground">Nodedr OrderRestro</a>.
+            Licensed AGPL-3.0 &middot;{" "}
+            <a href="https://github.com/AnilBotta/Cosmic-POS" className="underline hover:text-foreground">Source code</a>
           </p>
           <p className="text-xs text-muted-foreground">Made in India.</p>
         </div>

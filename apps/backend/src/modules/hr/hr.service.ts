@@ -3,11 +3,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import type {
-  LeaveRequestDto,
-  ShiftDto,
-  StaffPayDto,
-} from '@nodedr-restaurant/types';
+import type { LeaveRequestDto, ShiftDto, StaffPayDto } from '@cosmic-pos/types';
 import { localDate, zonedRange } from '../../common/time';
 import { BranchTimeService } from '../../common/services/branch-time.service';
 import { PrismaService } from '../../prisma/prisma.service';

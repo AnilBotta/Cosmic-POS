@@ -1,10 +1,7 @@
 import { Body, Controller, Get, Param, Post, UsePipes } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Throttle } from '@nestjs/throttler';
-import {
-  publicOrderSchema,
-  publicRequestSchema,
-} from '@nodedr-restaurant/types';
+import { publicOrderSchema, publicRequestSchema } from '@cosmic-pos/types';
 import { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';
 import { PublicMenuService } from './public-menu.service';
 

@@ -8,7 +8,7 @@ import { downloadHref, totalDownloads } from "@/lib/downloads";
 import { useDownloadStats } from "@/hooks/use-download-stats";
 
 const INSTALL_COMMAND =
-  "git clone https://github.com/Raktim94/nodedr-restaurant-pos.git && cd nodedr-restaurant-pos && ./install.sh";
+  "git clone https://github.com/AnilBotta/Cosmic-POS.git && cd Cosmic-POS && ./install.sh";
 
 const channels = [
   {

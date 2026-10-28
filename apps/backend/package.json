@@ -1,8 +1,8 @@
 {
-  "name": "@nodedr-restaurant/backend",
+  "name": "@cosmic-pos/backend",
   "version": "0.0.1",
-  "description": "Nodedr OrderRestro API",
-  "author": "Raktim Ranjit <mail@raktimranjit.com> (https://github.com/Raktim94)",
+  "description": "Cosmic POS API",
+  "author": "SyncAi Technologies",
   "private": true,
   "license": "AGPL-3.0-only",
   "scripts": {
@@ -39,7 +39,7 @@
     "@nestjs/swagger": "^8.1.1",
     "@nestjs/throttler": "^6.7.0",
     "@nestjs/websockets": "^11.2.6",
-    "@nodedr-restaurant/types": "workspace:*",
+    "@cosmic-pos/types": "workspace:*",
     "@prisma/client": "^6.19.3",
     "archiver": "^7.0.1",
     "bcrypt": "^6.0.0",

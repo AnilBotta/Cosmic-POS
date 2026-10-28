@@ -18,7 +18,7 @@ for arch in $archs; do
   install -m 0644 "$here/$PKG.service" "$pkg/lib/systemd/system/$PKG.service"
   if [ -d "$here/bin" ]; then mkdir -p "$pkg/usr/bin"; install -m 0755 "$here"/bin/* "$pkg/usr/bin/"; fi
   install -m 0644 "$root/LICENSE" "$pkg/usr/share/doc/$PKG/copyright"
-  printf '%s (%s) stable; urgency=medium\n\n  * %s %s. See %s\n\n -- Raktim Ranjit <ranjitraktim5@gmail.com>  %s\n' "$PKG" "$ver" "$TITLE" "$ver" "$DOCS" "$(date -R)" | gzip -9n > "$pkg/usr/share/doc/$PKG/changelog.Debian.gz"
+  printf '%s (%s) stable; urgency=medium\n\n  * %s %s. See %s\n\n -- SyncAi Technologies <AnilBotta@users.noreply.github.com>  %s\n' "$PKG" "$ver" "$TITLE" "$ver" "$DOCS" "$(date -R)" | gzip -9n > "$pkg/usr/share/doc/$PKG/changelog.Debian.gz"
   for s in postinst prerm postrm; do install -m 0755 "$here/$s" "$pkg/DEBIAN/$s"; done
   find "$pkg" -type d -exec chmod 0755 {} +
   size=$(du -sk "$pkg" | cut -f1)
@@ -30,7 +30,7 @@ Priority: optional
 Architecture: $arch
 Installed-Size: $size
 Depends: docker.io | docker-ce, docker-compose-v2 | docker-compose-plugin, systemd, curl
-Maintainer: Raktim Ranjit <ranjitraktim5@gmail.com>
+Maintainer: SyncAi Technologies <AnilBotta@users.noreply.github.com>
 Homepage: $HOMEPAGE
 Description: $SHORTDESC
 $LONGDESC

@@ -5,10 +5,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import {
-  permissionSatisfied,
-  type PermissionKey,
-} from '@nodedr-restaurant/types';
+import { permissionSatisfied, type PermissionKey } from '@cosmic-pos/types';
 import { PERMISSIONS_KEY } from '../decorators/permissions.decorator';
 import type { AuthenticatedRequest } from '../types/authenticated-request';
 

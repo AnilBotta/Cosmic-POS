@@ -202,7 +202,7 @@ What to do about it:
    `build-windows-msix.ps1` is dev/CI-only and must never be used for
    that.
 4. **App icons/splash** — currently generated from the web app's existing
-   logo (`apps/web/public/logo.png` → `windows/msix/Assets/*.png`).
+   logo (`apps/web/public/cosmic-pos-logo.png` → `windows/msix/Assets/*.png`).
    Regenerate at higher fidelity if a dedicated Windows-tile-optimized
    icon set is desired later.
 5. **Version bump policy** — `AppxManifest.xml`'s `Identity/@Version` and

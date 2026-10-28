@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/layout/logo";
+import { SyncAiCredit } from "@/components/layout/syncai-credit";
 import { downloadHref } from "@/lib/downloads";
 
 const columns = [
@@ -41,8 +42,9 @@ export function MarketingFooter() {
             </Link>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
               Offline-first restaurant management, self-hosted on your own
-              server. Crafted by SyncAi Technologies.
+              server.
             </p>
+            <SyncAiCredit className="mt-3 text-sm text-muted-foreground" height={22} />
           </div>
 
           {columns.map((col) => (

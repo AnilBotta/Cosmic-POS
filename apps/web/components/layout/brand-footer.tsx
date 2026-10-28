@@ -1,4 +1,5 @@
 import { LifeBuoy } from "lucide-react";
+import { SyncAiCredit } from "@/components/layout/syncai-credit";
 
 export function BrandFooter() {
   return (
@@ -18,8 +19,9 @@ export function BrandFooter() {
         rel="noopener noreferrer"
         className="text-left text-xs font-medium leading-tight text-sidebar-foreground/70 hover:text-sidebar-foreground hover:underline"
       >
-        Cosmic POS · Crafted by SyncAi Technologies
+        Cosmic POS
       </a>
+      <SyncAiCredit className="text-[11px] text-sidebar-foreground/60" height={16} />
       <a
         href="https://github.com/Raktim94/nodedr-restaurant-pos"
         target="_blank"

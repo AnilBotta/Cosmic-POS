@@ -21,7 +21,12 @@ dine-in, takeaway, delivery and kitchen operations.
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Status](https://img.shields.io/badge/status-active%20development-orange.svg)](./ROADMAP.md)
 
-Crafted by **SyncAi Technologies** · Based on [Nodedr OrderRestro](https://github.com/Raktim94/nodedr-restaurant-pos) (AGPL-3.0)
+Crafted by
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="apps/web/public/syncai-logo-dark.png">
+  <img src="apps/web/public/syncai-logo.png" alt="SyncAi Technologies" height="24" align="absmiddle">
+</picture>
+· Based on [Nodedr OrderRestro](https://github.com/Raktim94/nodedr-restaurant-pos) (AGPL-3.0)
 
 **[Get Cosmic POS](https://github.com/AnilBotta/Cosmic-POS)** · **[Credits](./NOTICE.md)**
 
@@ -510,7 +515,7 @@ See [`MAINTAINERS.md`](./MAINTAINERS.md) for project maintainers.
 ---
 
 <div align="center">
-<img src="apps/web/public/logo.png" alt="Cosmic POS" width="72">
+<img src="apps/web/public/cosmic-pos-logo.png" alt="Cosmic POS" width="72">
 </div>
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@cosmic-pos/backend",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Cosmic POS API",
   "author": "SyncAi Technologies",
   "private": true,
